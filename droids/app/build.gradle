@@ -1,0 +1,21 @@
+plugins {
+    id 'buildlogic.jme-application-conventions'
+}
+
+description = 'Droids app (view & controller)'
+
+dependencies {
+    implementation project(":jme-common")
+    implementation project(":droids:json")
+
+    implementation libs.jme3.desktop
+
+    runtimeOnly libs.jme3.awt.dialogs
+    runtimeOnly libs.jme3.plugins
+    runtimeOnly libs.jme3.jogg
+}
+
+application {
+    mainClass = 'pp.droids.DroidsApp'
+    applicationName = 'droids'
+}

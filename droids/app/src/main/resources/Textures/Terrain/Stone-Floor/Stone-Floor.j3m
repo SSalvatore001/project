@@ -1,0 +1,14 @@
+Material StoneFloor : Common/MatDefs/Light/Lighting.j3md {
+     MaterialParameters {
+         Shininess            : 64
+         DiffuseMap           : Repeat Textures/Terrain/Stone-Floor/Stone_Floor_002_COLOR.jpg
+         NormalMap            : Repeat Textures/Terrain/Stone-Floor/Stone_Floor_002_NORM.jpg
+         SpecularMap          : Repeat Textures/Terrain/Stone-Floor/Stone_Floor_002_SPEC.jpg
+         ParallaxMap          : Repeat Textures/Terrain/Stone-Floor/Stone_Floor_002_DISP.png
+         // PackedNormalParallax : true
+         // UseMaterialColors : true
+         Ambient  : 0.5 0.5 0.5 1.0
+         Diffuse  : 1.0 1.0 1.0 1.0
+         Specular : 1.0 1.0 1.0 1.0
+     }
+}

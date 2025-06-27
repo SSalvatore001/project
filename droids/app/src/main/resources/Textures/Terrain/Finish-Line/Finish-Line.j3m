@@ -1,0 +1,9 @@
+Material FinishLine : Common/MatDefs/Light/Lighting.j3md {
+     MaterialParameters {
+         Shininess            : 64
+         DiffuseMap           : Repeat Textures/Terrain/Finish-Line/Finish-Line.png
+         Ambient  : 1.0 1.0 1.0 1.0
+         Diffuse  : 1.0 1.0 1.0 1.0
+         Specular : 1.0 1.0 1.0 1.0
+     }
+}

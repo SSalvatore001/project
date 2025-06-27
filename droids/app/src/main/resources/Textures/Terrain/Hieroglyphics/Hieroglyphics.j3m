@@ -1,0 +1,14 @@
+Material Hieroglyphics : Common/MatDefs/Light/Lighting.j3md {
+     MaterialParameters {
+         Shininess            : 2.0
+         DiffuseMap           : Repeat Textures/Terrain/Hieroglyphics/Wall_Stone_Hieroglyphs_001_basecolor.jpg
+         NormalMap            : Repeat Textures/Terrain/Hieroglyphics/Wall_Stone_Hieroglyphs_001_normal.jpg
+         SpecularMap          : Repeat Textures/Terrain/Hieroglyphics/Wall_Stone_Hieroglyphs_001_roughness.jpg
+         ParallaxMap          : Repeat Textures/Terrain/Hieroglyphics/Wall_Stone_Hieroglyphs_001_height.png
+         // PackedNormalParallax : true
+         // UseMaterialColors : true
+         Ambient  : 0.5 0.5 0.5 1.0
+         Diffuse  : 1.0 1.0 1.0 1.0
+         Specular : 1.0 1.0 1.0 1.0
+     }
+}

@@ -1,0 +1,14 @@
+Material Sand : Common/MatDefs/Light/Lighting.j3md {
+     MaterialParameters {
+         Shininess            : 64
+         DiffuseMap           : Repeat Textures/Terrain/Sand/Sand_001_COLOR.jpg
+         NormalMap            : Repeat Textures/Terrain/Sand/Sand_001_NRM.jpg
+         SpecularMap          : Repeat Textures/Terrain/Sand/Sand_001_SPEC.jpg
+         ParallaxMap          : Repeat Textures/Terrain/Sand/Sand_001_DISP.jpg
+         // PackedNormalParallax : true
+         // UseMaterialColors : true
+         Ambient  : 0.5 0.5 0.5 1.0
+         Diffuse  : 1.0 1.0 1.0 1.0
+         Specular : 1.0 1.0 1.0 1.0
+     }
+}
