@@ -1,0 +1,9 @@
+plugins {
+    id 'buildlogic.java-library-conventions'
+}
+
+description = 'Common classes'
+
+dependencies {
+    testImplementation libs.junit.jupiter.params
+}
