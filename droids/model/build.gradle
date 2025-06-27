@@ -1,0 +1,9 @@
+plugins {
+    id 'buildlogic.java-library-conventions'
+}
+
+description = 'Droids model'
+
+dependencies {
+    api project(':common')
+}

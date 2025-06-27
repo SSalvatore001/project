@@ -1,0 +1,118 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam style strictuml
+skinparam title {
+   FontName Arial
+}
+
+title = Navigation to target
+autonumber "<font color=blue> 0:"
+
+participant "__:GameInput__" as GameInput
+participant "__droid:Robot__" as droid
+participant "__b:Pathfinder-__\n__Behavior__" as b
+participant "__model:__\n__DroidsModel__" as model
+participant "__exc:Thread-__\n__PoolExecutor__" as exc
+participant "__fut: Future__\n__<List<Position>>__" as fut
+participant "__worker:Thread__" as thread
+participant "__call:Callable__" as call
+participant "__nav:Droids-__\n__Navigator__" as nav
+
+[-> GameInput ++: navigate()
+
+note over GameInput: Compute target
+
+GameInput -> droid ++: navigateTo(target)
+droid -> droid ++: getNavigator
+create nav
+droid -->> nav: <<create>> new DroidsNavigator(droid)
+'return nav
+droid -->> droid --
+create call
+droid -->> call: <<create>> () -> nav.findPathTo(target)
+create b
+droid -->> b : <<create>> new PathfinderBehavior(droid,call)
+activate b
+b -> model ++: getExecutor
+'return exc
+model -->> b --: exc
+b -> exc ++: submit(call)
+create fut
+exc -->> fut: <<create>>
+exc ->> thread ++: work(call,fut)
+exc -->> b --: fut
+b -->> droid --: b
+thread -> call ++: call
+call -> nav ++:findPathTo(target)
+droid -> droid ++: setBehavior(b)
+'return
+droid -->> droid --
+droid -->> GameInput --
+GameInput -->>[ --
+
+note over nav: Longish path computation
+
+loop in each frame until path computation has terminated and fut has got a value
+[-> droid ++: update(delta)
+droid -> b ++: update(delta)
+b -> b ++: checkFuture
+b -> fut ++: isDone
+'return false
+fut -->> b --: false
+'return
+b -->> b --
+'return
+b -->> droid --
+droid -->>[ --
+end
+
+nav -->> call --: path
+call -->> thread --: path
+thread -> fut ++: set(path)
+'return
+fut -->> thread --
+deactivate thread
+
+[-> droid ++: update(delta)
+droid -> b ++: update(delta)
+b -> b ++: checkFuture
+b -> fut ++: isDone
+'return true
+fut -->> b --: true
+b -> fut ++: get
+'return path
+fut -->> b --: path
+b -> b ++: setPath(path)
+'return
+b -->> b --
+'return
+b -->> b --
+loop while path is not empty and delta > 0
+b -> b ++: followPath(delta)
+note over b: moving and turning the droid
+'return
+b -->> b --
+end
+'return
+b -->> droid --
+droid -->>[ --
+
+loop in each frame
+[-> droid ++: update(delta)
+droid -> b ++: update(delta)
+b -> b ++: checkFuture
+'return
+b -->> b --
+loop while path is not empty and delta > 0
+b -> b ++: followPath(delta)
+note over b: moving and turning the droid
+'return
+b -->> b --
+end
+'return
+b -->> droid --
+droid -->>[ --
+end
+
+@enduml

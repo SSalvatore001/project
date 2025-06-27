@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+skinparam Shadowing true
+skinparam title {
+   FontName Arial
+}
+skinparam package {
+   Style rectangle
+   BorderColor Gray
+}
+skinparam component {
+   BackgroundColor LightGoldenRodYellow
+   BorderColor Black
+   FontName Arial
+   ArrowColor Black
+}
+
+title = Module Dependencies
+
+component Jackson as jackson #lightblue
+component ":droids:json" as json
+component ":droids:app" as app
+component ":droids:model" as model
+component ":common" as common
+component ":jme-common" as graphics
+component jME as jME #lightblue
+
+app ..> jME
+app ..> graphics
+app ..> json
+json .[thickness=3].> jackson
+json .[thickness=3].> model
+model .[thickness=3].> common
+graphics .[thickness=3].> common
+graphics ..> jME
+@enduml

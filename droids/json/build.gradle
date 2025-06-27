@@ -1,0 +1,10 @@
+plugins {
+    id 'buildlogic.java-library-conventions'
+}
+
+description = 'Serialization of Droids models'
+
+dependencies {
+    api project(':droids:model')
+    api libs.jackson.databind
+}

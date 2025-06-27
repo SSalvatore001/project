@@ -1,0 +1,101 @@
+{
+  "type": "CASTLE",
+  "droid": "id1",
+  "items": [
+    {
+      "type": "circular",
+      "id": "id1",
+      "x": 12.0,
+      "y": 7.0,
+      "angle": 0,
+      "kind": "ROBOT",
+      "radius": 0.45,
+      "lives": 40
+    },
+    {
+      "type": "circular",
+      "id": "id2",
+      "x": 9.0,
+      "y": 9.0,
+      "kind": "OBSTACLE",
+      "radius": 0.45
+    },
+    {
+      "type": "circular",
+      "id": "id3",
+      "x": 4.0,
+      "y": 8.0,
+      "kind": "OBSTACLE",
+      "radius": 0.45
+    },
+    {
+      "type": "circular",
+      "id": "id4",
+      "x": 22.0,
+      "y": 7.0,
+      "kind": "OBSTACLE",
+      "radius": 0.45
+    },
+    {
+      "type": "circular",
+      "id": "id5",
+      "x": 1.0,
+      "y": 8.0,
+      "kind": "OBSTACLE",
+      "radius": 0.45
+    },
+    {
+      "type": "circular",
+      "id": "id6",
+      "x": 2.0,
+      "y": 12.0,
+      "kind": "OBSTACLE",
+      "radius": 0.45
+    },
+    {
+      "type": "circular",
+      "id": "id7",
+      "x": 13.0,
+      "y": 12.0,
+      "kind": "ROBOT",
+      "radius": 0.45,
+      "lives": 4
+    },
+    {
+      "type": "circular",
+      "id": "id8",
+      "x": 10.0,
+      "y": 11.0,
+      "kind": "ROBOT",
+      "radius": 0.45,
+      "lives": 4
+    },
+    {
+      "type": "circular",
+      "id": "id9",
+      "x": 4.0,
+      "y": 9.0,
+      "kind": "ROBOT",
+      "radius": 0.45,
+      "lives": 4
+    },
+    {
+      "type": "circular",
+      "id": "id10",
+      "x": 12.0,
+      "y": 10.0,
+      "kind": "ROBOT",
+      "radius": 0.45,
+      "lives": 4
+    },
+    {
+      "type": "circular",
+      "id": "id11",
+      "x": 21.0,
+      "y": 12.0,
+      "kind": "ROBOT",
+      "radius": 0.45,
+      "lives": 4
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+'set namespaceSeparator none
+skinparam linetype ortho
+skinparam Shadowing true
+skinparam title {
+   FontName Arial
+}
+skinparam package {
+   Style rectangle
+   BorderColor Gray
+}
+skinparam class {
+   BackgroundColor LightGoldenRodYellow
+   BorderColor DarkRed
+   FontName Arial
+   ArrowColor Black
+}
+hide empty members
+'hide circle
+
+title = Class Diagram of DTOs
+
+class DroidsMapDTO
+abstract class ItemDTO
+class CircularItemDTO
+DroidsMapDTO --> "*" ItemDTO : items
+ItemDTO <|-[#DarkRed]- CircularItemDTO
+ItemDTO <|-[#DarkRed]- PolygonDTO
+ItemDTO <|-[#DarkRed]- FinishLineDTO
+
+@enduml

@@ -1,0 +1,61 @@
+#@startuml
+'https://plantuml.com/use-case-diagram
+skinparam title {
+   FontName Arial
+}
+skinparam class {
+   BackgroundColor Yellow
+   BorderColor Black
+   FontName Arial
+   ArrowColor Black
+}
+skinparam usecase {
+   BackgroundColor LightGray
+   BorderColor Black
+   FontName Arial
+   ArrowColor Black
+}
+skinparam note {
+   BackgroundColor LightYellow
+   BorderColor Gray
+   FontName Arial
+   ArrowColor Black
+}
+skinparam package {
+   BorderColor Gray
+   BackgroundColor WhiteSmoke
+   Style rect
+}
+skinparam defaultTextAlignment center
+skinparam Shadowing true
+
+allowmixing
+hide empty members
+hide circle
+
+title = Scene Node Structure
+
+usecase (SimpleApplication::\nrootNode) as rootNode
+package GameState {
+    usecase viewNode
+}
+package Scene {
+    usecase "scene-\nNode" as sceneNode
+    usecase sky
+    class "ambient-\nLight" as ambientLight
+    class sun
+}
+package MainSynchronizer {
+    usecase "item-\nNode" as itemNode
+}
+
+rootNode --> viewNode
+viewNode --> sceneNode
+sceneNode --> sky
+viewNode --> ambientLight
+viewNode --> sun
+viewNode --> itemNode
+note right of rootNode: Scene node of vieport\nLegacyApplication::viewPort
+note bottom of itemNode: Contains additional\nchild nodes that\nrepresent the model
+
+@enduml

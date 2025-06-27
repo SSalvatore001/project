@@ -1,0 +1,72 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+skinparam title {
+   FontName Arial
+}
+skinparam class {
+   BackgroundColor Yellow
+   BorderColor Black
+   FontName Arial
+   ArrowColor Black
+}
+skinparam usecase {
+   BackgroundColor LightGray
+   BorderColor Black
+   FontName Arial
+   ArrowColor Black
+}
+skinparam note {
+   BackgroundColor LightYellow
+   BorderColor Gray
+   FontName Arial
+   ArrowColor Black
+}
+skinparam package {
+   BorderColor Gray
+   BackgroundColor WhiteSmoke
+   Style rect
+}
+skinparam Shadowing true
+skinparam defaultTextAlignment center
+
+title = GUI Node Structure
+
+(SimpleApplication::guiNode) as guiNode
+(DroidsApp::droidsGuiNode) as droidsGuiNode #LightBlue
+(guiNode) --> (droidsGuiNode)
+note top of (droidsGuiNode) : Scene node of viewport\nLegacyApplication::\nguiViewPort
+
+package TextOverlay {
+   (overlay-\nGuiNode) as overlayGuiNode
+   (top-\nText) as topText
+   (bottom-\nText) as bottomText
+   (center-\nText) as centerText
+}
+
+droidsGuiNode ..> overlayGuiNode
+overlayGuiNode --> topText
+overlayGuiNode --> centerText
+overlayGuiNode --> bottomText
+centerText -[hidden]- topText
+centerText -[hidden]- bottomText
+
+package RadarView {
+   (radar-\nGuiNode) as radarGuiNode #LightBlue
+   (radar-\nNode) as radarNode
+   (back-\nground) as background
+   (center-\nNode) as centerNode
+   note right of radarGuiNode: Scene node\nof viewport\nradarGuiVP
+}
+
+package RadarSynchronizer {
+   (itemNode) as itemNode
+}
+note bottom of itemNode: Contains model\nrepresentations
+
+guiNode --> radarGuiNode
+radarGuiNode ..> radarNode
+radarNode --> centerNode
+radarNode --> background
+centerNode --> itemNode
+
+@enduml

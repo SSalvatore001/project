@@ -1,0 +1,108 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam linetype ortho
+skinparam Shadowing true
+skinparam nodesep 40
+skinparam ranksep 40
+skinparam title {
+   FontName Arial
+}
+skinparam package {
+   Style rectangle
+   BorderColor Gray
+}
+skinparam class {
+   BackgroundColor LightGoldenRodYellow
+   BorderColor DarkRed
+   FontName Arial
+   ArrowColor Black
+}
+'skinparam groupInheritance 2
+
+hide empty members
+'hide circle
+
+title = Main Class Diagram
+
+namespace app #F8F8FF {
+   abstract class "Simple-\nApplication" as SimpleApplication
+   abstract class "Abstract-\nAppState" as AbstractAppState
+   abstract class "ModelView-\nSynchronizer" as ModelViewSynchronizer
+   abstract class Dialog
+   class "Radar-\nView" as RadarView
+   class "Game-\nState" as GameState
+   class "Game-\nSound" as GameSound
+   class "Game-\nInput" as GameInput
+   class "Text-\nOverlay" as TextOverlay
+   class "Radar-\nSynch." as RadarSynchronizer
+   class "Main-\nSynch." as MainSynchronizer
+   class "DroidsApp-\nConfig" as DroidsAppConfig
+
+   DroidsApp -[#DarkRed]-|> SimpleApplication
+   AbstractAppState <|-[#DarkRed]- GameState
+   AbstractAppState <|-[#DarkRed]- TextOverlay
+   AbstractAppState <|-[#DarkRed]- GameInput
+   AbstractAppState <|-[#DarkRed]- RadarView
+   AbstractAppState <|-[#DarkRed]- GameSound
+   GameState <--- ModelViewSynchronizer
+   ModelViewSynchronizer <|-[#DarkRed]- MainSynchronizer
+   ModelViewSynchronizer <|-[#DarkRed]- RadarSynchronizer
+
+   class "Droids-\nApp" as DroidsApp #Gold {
+   {static} main(String[])
+   }
+
+   Dialog <|-[#DarkRed]- Menu
+
+
+   Scene <--> GameState
+   GameState --> MainSynchronizer
+   RadarView ..> "<<uses>>" RadarSynchronizer
+   GameInput <--> DroidsApp
+   GameSound <--> DroidsApp
+   GameState <--> DroidsApp
+   Menu --> DroidsApp
+   TextOverlay <--> DroidsApp
+   RadarView <---> DroidsApp
+   DroidsApp ---> DroidsAppConfig
+}
+
+namespace model #F8FFF8 {
+   class "Droids-\nConfig" as DroidsConfig
+   DroidsModel --> DroidsConfig
+   app.GameState --> DroidsModel
+   class "Droids-\nMap" as DroidsMap
+   DroidsModel --> DroidsMap
+
+   interface Item
+   abstract class AbstractItem
+   abstract class "Abstract-\nCircularItem" as AbstractCircularItem
+   class "Polygon" as Polygon
+   interface "Damage-\nReceiver" as DamageReceiver
+   interface CircularItem
+   interface Navigable
+   class Robot
+   class "Finish-\nLine" as FinishLine
+
+   Item <|-[#DarkRed]- CircularItem
+   Item <|.[#DarkRed].. AbstractItem
+   Item <|-[#DarkRed]-- DamageReceiver
+   Item <|-[#DarkRed]-- Navigable
+   CircularItem <|.[#DarkRed]. AbstractCircularItem
+   AbstractItem <|-[#DarkRed]- AbstractCircularItem
+   AbstractItem --> DroidsModel
+   AbstractCircularItem <|-[#DarkRed]- Obstacle
+   AbstractCircularItem <|-[#DarkRed]- Projectile
+   AbstractCircularItem <|-[#DarkRed]- Robot
+   DamageReceiver <|.[#DarkRed]. Robot
+   Navigable <|.[#DarkRed]. Robot
+   DroidsMap --> Robot
+   Item "*" <-- DroidsMap
+   DroidsConfig <|-[#DarkRed]- app.DroidsAppConfig
+   AbstractItem <|-[#DarkRed]- Polygon
+   AbstractItem <|-[#DarkRed]- FinishLine
+   AbstractItem --> Polygon
+}
+
+@enduml
