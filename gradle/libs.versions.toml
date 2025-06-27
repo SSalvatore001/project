@@ -1,0 +1,43 @@
+[versions]
+jme = "3.8.1-stable"
+lemur = "1.16.0"
+lemurProto = "1.13.0"
+junit = "5.12.1"
+junitPlatform = "1.12.1"
+mockito = "5.16.1"
+gson = "2.12.1"
+jackson = "2.18.3"
+groovy = "4.0.26"
+slf4j = "2.0.17"
+
+[libraries]
+
+# JMonkeyEngine Libraries
+jme3-core = { module = "org.jmonkeyengine:jme3-core", version.ref = "jme" }
+jme3-desktop = { module = "org.jmonkeyengine:jme3-desktop", version.ref = "jme" }
+jme3-networking = { module = "org.jmonkeyengine:jme3-networking", version.ref = "jme" }
+jme3-awt-dialogs = { module = "org.jmonkeyengine:jme3-awt-dialogs", version.ref = "jme" }
+jme3-plugins = { module = "org.jmonkeyengine:jme3-plugins", version.ref = "jme" }
+jme3-jogg = { module = "org.jmonkeyengine:jme3-jogg", version.ref = "jme" }
+jme3-effects = { module = "org.jmonkeyengine:jme3-effects", version.ref = "jme" }
+jme3-testdata = { module = "org.jmonkeyengine:jme3-testdata", version.ref = "jme" }
+jme3-lwjgl = { module = "org.jmonkeyengine:jme3-lwjgl", version.ref = "jme" }
+jme3-lwjgl3 = { module = "org.jmonkeyengine:jme3-lwjgl3", version.ref = "jme" }
+jme3-jbullet = { module = "org.jmonkeyengine:jme3-jbullet", version.ref = "jme" }
+
+# Lemur Libraries
+lemur = { module = "com.simsilica:lemur", version.ref = "lemur" }
+lemur-proto = { module = "com.simsilica:lemur-proto", version.ref = "lemurProto" }
+
+# Testing Libraries
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junitPlatform" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+
+# Utility Libraries
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+groovy-jsr223 = { module = "org.apache.groovy:groovy-jsr223", version.ref = "groovy" }
+slf4j-nop = { module = "org.slf4j:slf4j-nop", version.ref = "slf4j" }
