@@ -1,0 +1,77 @@
+plugins {
+    id 'buildlogic.java-application-conventions'
+}
+
+defaultTasks 'clean', 'installDist'
+
+description = 'Hello world examples for jME'
+
+dependencies {
+    implementation libs.jme3.desktop
+    implementation libs.jme3.jbullet
+
+    if (use_lwjgl2())
+        runtimeOnly libs.jme3.lwjgl
+    else
+        runtimeOnly libs.jme3.lwjgl3
+    if (!mustStartOnFirstThread())
+        runtimeOnly libs.jme3.awt.dialogs
+
+    runtimeOnly libs.jme3.plugins
+    runtimeOnly libs.jme3.jogg
+    runtimeOnly libs.jme3.testdata
+
+    testImplementation libs.junit.jupiter
+    testImplementation libs.junit.platform.launcher
+}
+
+application {
+    // creates the "main" hello world application
+    mainClass.set('jme3test.helloworld.HelloJME3')
+    applicationName = 'HelloJME3'
+    applicationDefaultJvmArgs = lwjglJvmArgs()
+
+    // just a placeholder
+    tasks.register('createAllStartScripts')
+
+    // creates the other hello world applications
+    ['HelloAnimation', 'HelloAssets', 'HelloAudio', 'HelloCollision',
+     'HelloEffects', 'HelloInput', 'HelloLoop', 'HelloMaterial', 'HelloNode',
+     'HelloPhysics', 'HelloPicking', 'HelloTerrain', 'HelloTerrainCollision'
+    ].each() { className ->
+        def t = tasks.register(className + 'StartScript', CreateStartScripts) {
+            mainClass.set('jme3test.helloworld.' + className)
+            applicationName = className
+            classpath = startScripts.classpath
+            outputDir = startScripts.outputDir
+            defaultJvmOpts = lwjglJvmArgs()
+        }
+        applicationDistribution.into('bin') {
+            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+            from(t)
+        }
+        startShadowScripts.dependsOn(t)
+    }
+}
+
+/**
+ * Check whether jme3-lwjgl (i.e., version 2) should be used instead of jme3-lwjgl3.
+ * This is controlled by existence of the file 'use/lwjgl2'
+ */
+def use_lwjgl2() {
+    return file('use/lwjgl2').exists()
+}
+
+/**
+ * Returns the LWJGL-specific JVM args when starting a jme program.
+ */
+def lwjglJvmArgs() {
+    if (mustStartOnFirstThread())
+        return ['-XstartOnFirstThread']
+    else
+        return []
+}
+
+def mustStartOnFirstThread() {
+    return org.gradle.internal.os.OperatingSystem.current().isMacOsX() && !use_lwjgl2()
+}

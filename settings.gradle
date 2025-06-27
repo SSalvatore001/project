@@ -1,0 +1,6 @@
+include ':droids:app'
+include ':droids:json'
+include ':droids:model'
+include ':common'
+include ':jme-common'
+include ':jme-helloworld'
