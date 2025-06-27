@@ -1,0 +1,14 @@
+plugins {
+    id 'buildlogic.java-library-conventions'
+}
+
+description = 'Common classes used in jME applications'
+
+dependencies {
+    implementation libs.jme3.core
+    api libs.lemur
+    api project(':common')
+
+    runtimeOnly libs.groovy.jsr223
+    runtimeOnly libs.slf4j.nop
+}
