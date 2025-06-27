@@ -1,0 +1,32 @@
+import org.gradle.internal.os.OperatingSystem
+
+plugins {
+    // Apply the common convention plugin for shared build configuration between library and application projects.
+    id 'buildlogic.java-common-conventions'
+
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+
+    // Apply the shdow plugin to add support for building a fat jar.
+    id 'com.gradleup.shadow'
+}
+
+/**
+ * Check whether jme3-lwjgl (i.e., version 2) should be used instead of jme3-lwjgl3.
+ * This is controlled by existence of the file 'use/lwjgl2'
+ */
+def use_lwjgl2() {
+    return file("${rootProject.projectDir}/use/lwjgl2").exists()
+}
+
+dependencies {
+    if (use_lwjgl2())
+        runtimeOnly libs.jme3.lwjgl
+    else
+        runtimeOnly libs.jme3.lwjgl3
+}
+
+application {
+    if (OperatingSystem.current().isMacOsX() && !use_lwjgl2())
+        applicationDefaultJvmArgs = ['-XstartOnFirstThread']
+}
